@@ -11,7 +11,7 @@ import models.files.CCD;
 import models.files.CCR;
 import models.files.Document;
 import models.fitness.DietaryIntake;
-import models.fitness.Excercise;
+import models.fitness.Exercise;
 import models.history.Appointment;
 import models.history.FamilyHistory;
 import models.history.Immunization;
@@ -104,7 +104,7 @@ public class User extends Model {
     private List<DietaryIntake> dietaryIntakeList = new ArrayList<DietaryIntake>();
 
     @OneToMany
-    private List<Excercise> excerciseList = new ArrayList<Excercise>();
+    private List<Exercise> exerciseList = new ArrayList<Exercise>();
 
     @OneToMany
     private List<Appointment> appointmentList = new ArrayList<Appointment>();
@@ -377,12 +377,12 @@ public class User extends Model {
         this.dietaryIntakeList = dietaryIntakeList;
     }
 
-    public List<Excercise> getExcerciseList() {
-        return excerciseList;
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
     }
 
-    public void setExcerciseList(List<Excercise> excerciseList) {
-        this.excerciseList = excerciseList;
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
     }
 
     public List<Appointment> getAppointmentList() {

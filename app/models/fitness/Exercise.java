@@ -1,4 +1,4 @@
-package models.files;
+package models.fitness;
 
 import play.db.ebean.Model;
 
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 /**
  * Created by Sagar Gopale on 3/1/14.
  */
-public class CCD extends Model {
+public class Exercise extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
