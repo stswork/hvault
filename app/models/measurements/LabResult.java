@@ -10,10 +10,11 @@ import javax.persistence.*;
  */
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BloodGlucose extends Model {
+public class LabResult extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
 }
