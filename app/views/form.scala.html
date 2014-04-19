@@ -1,0 +1,267 @@
+@(title: String)
+
+@import tags.header._
+@import tags.footer._
+
+@main("title") {
+<section class="content">
+
+    @sidebar()
+
+    <div class="content-liquid-full">
+        <div class="container">
+
+            @header()
+
+            <!-- Breadcrumbs Start -->
+            <div class="row breadcrumbs">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumbs">
+                        <li><a href="#"><i class="fa fa-home"></i></a></li>
+                        <li><a href="#">Forms</a></li>
+                        <li><a href="#">General Form Elements</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Breadcrumbs End -->
+
+            <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <h3>Forms</h3>
+
+            <!-- Row Start -->
+            <div class="row">
+
+                <!-- Basic Example Start -->
+                <div class="boxed no-padding col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="inner">
+
+                        <!-- Title Bart Start -->
+                        <div class="title-bar">
+                            <h4>Basic Example</h4>
+                        </div>
+                        <!-- Title Bart End -->
+
+                        <form method="post" action="#" class="basic-form">
+                            <label for="email">E-mail adress</label>
+                            <input type="text" name="email" id="email" placeholder="Enter your e-mail" />
+                            <label for="password">Password</label>
+                            <input type="text" name="password" id="password" placeholder="Enter your password" />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="checkbox" name="checkbox" id="checkbox" value="1" class="icheck-blue" checked="checked"/> Check me out
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" class="btn btn-sm btn-default">File Input</button>
+                                    <button type="button" class="btn btn-sm btn-success">Success</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Basic Example End -->
+
+                <!-- Horizontal Example Start -->
+                <div class="boxed no-padding col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="inner">
+
+                        <!-- Title Bart Start -->
+                        <div class="title-bar">
+                            <h4>Horizontal Items</h4>
+                        </div>
+                        <!-- Title Bart End -->
+
+                        <form method="post" action="#" class="basic-form horizontal-form">
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <label for="email">E-mail adress</label>
+                                    <input type="text" name="email" id="email" placeholder="Enter your e-mail" />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <label for="password">Password</label>
+                                    <input type="text" name="password" id="password" placeholder="Enter your password" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="checkbox" name="checkbox" id="checkbox" value="1" class="icheck-blue" checked="checked"/> Check me out
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" class="btn btn-sm btn-default">File Input</button>
+                                    <button type="button" class="btn btn-sm btn-success">Success</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Horizontal Example End -->
+
+            </div>
+            <!-- Row End -->
+
+            <!-- Row Start -->
+            <div class="row">
+
+                <!-- Inline Form Start -->
+                <div class="boxed no-padding col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="inner">
+
+                        <!-- Title Bar Start -->
+                        <div class="title-bar">
+                            <h4>Inline form</h4>
+                        </div>
+                        <!-- Title Bar End -->
+
+                        <form method="post" action="#" class="basic-form inline-form">
+                            <div class="col-md-2"><label for="email">E-mail adress</label></div>
+                            <div class="col-md-10"><input type="text" name="email" id="email" placeholder="Enter your e-mail" /></div>
+                            <div class="col-md-2"><label for="password">Password</label></div>
+                            <div class="col-md-10"><input type="text" name="password" id="password" placeholder="Enter your password" /></div>
+
+                            <div class="col-md-10 col-md-offset-2">
+                                <input type="checkbox" name="checkbox" id="checkbox" value="1" class="icheck-blue" checked="checked"/> Check me out<br/>
+                                <button type="button" class="btn btn-sm btn-default">File Input</button>
+                                <button type="button" class="btn btn-sm btn-success">Success</button>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Inline Form End -->
+
+            </div>
+            <!-- Row End -->
+
+            <!-- Row Start -->
+            <div class="row">
+
+                <!-- Input Focused Start -->
+                <div class="boxed no-padding col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="inner">
+
+                        <!-- Title Bart Start -->
+                        <div class="title-bar">
+                            <h4>Input focus</h4>
+                        </div>
+                        <!-- Title Bart End -->
+
+                        <form method="post" action="#" class="basic-form">
+                            <input type="text" name="focused" id="focused" placeholder="This is focused" class="focused" />
+
+                            <div class="clearfix"></div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Input Focused End -->
+
+                <!-- Disabled Input Start -->
+                <div class="boxed no-padding col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="inner">
+
+                        <!-- Title Bart Start -->
+                        <div class="title-bar">
+                            <h4>Disabled input</h4>
+                        </div>
+                        <!-- Title Bart End -->
+
+                        <form method="post" action="#" class="basic-form">
+                            <input type="text" name="focused" id="focused" placeholder="This is focused"  disabled="disabled" />
+
+                            <div class="clearfix"></div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Disabled Input End -->
+
+            </div>
+            <!-- Row End -->
+
+            <!-- Row Start -->
+            <div class="row">
+
+                <!-- Disabled Input Start -->
+                <div class="boxed no-padding col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="inner">
+
+                        <!-- Title Bart Start -->
+                        <div class="title-bar">
+                            <h4>Validation States</h4>
+                        </div>
+                        <!-- Title Bart End -->
+
+                        <form method="post" action="#" class="basic-form">
+                            <input type="text" name="success" id="success" placeholder="Success state" class="success" />
+                            <input type="text" name="warning" id="warning" placeholder="Warning state" class="warning" />
+                            <input type="text" name="error" id="error" placeholder="Error state" class="error" />
+
+                            <div class="clearfix"></div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Disabled Input End -->
+
+                <!-- Help Start -->
+                <div class="boxed no-padding col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="inner">
+
+                        <!-- Title Bart Start -->
+                        <div class="title-bar">
+                            <h4>Help Text</h4>
+                        </div>
+                        <!-- Title Bart End -->
+
+                        <form method="post" action="#" class="basic-form">
+                            <input type="text" name="help" id="help" placeholder="Enter your city of birth" />
+                            <p class="input-help">Please enter your city of birth (example: New York).</p>
+
+                            <div class="clearfix"></div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Help End -->
+
+            </div>
+            <!-- Row End -->
+
+            <!-- Row Start -->
+            <div class="row"></div>
+            <!-- Row End -->
+
+            </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            @footer()
+
+        </div>
+    </div>
+
+</section>
+
+}
