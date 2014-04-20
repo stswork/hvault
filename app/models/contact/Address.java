@@ -2,9 +2,12 @@ package models.contact;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import models.user.User;
+import org.joda.time.DateTime;
+import play.data.format.Formats;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by Sagar Gopale on 2/26/14.
@@ -35,11 +38,13 @@ public class Address extends Model {
     @ManyToOne
     private User user;
 
+    @Formats.DateTime(pattern = "MM/dd/yy")
+    public Timestamp created = new Timestamp(DateTime.now().toDate().getTime());
+
     public Address() {
     }
 
-    public Address(Long id, String streetAddress1, String streetAddress2, String streetAddress3, String city, String state, String country, String pincode) {
-        this.id = id;
+    public Address(String streetAddress1, String streetAddress2, String streetAddress3, String city, String state, String country, String pincode, User user) {
         this.streetAddress1 = streetAddress1;
         this.streetAddress2 = streetAddress2;
         this.streetAddress3 = streetAddress3;
@@ -47,6 +52,7 @@ public class Address extends Model {
         this.state = state;
         this.country = country;
         this.pincode = pincode;
+        this.user = user;
     }
 
     public Long getId() {
@@ -111,5 +117,21 @@ public class Address extends Model {
 
     public void setPincode(String pincode) {
         this.pincode = pincode;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 }

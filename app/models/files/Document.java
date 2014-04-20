@@ -2,10 +2,13 @@ package models.files;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import models.user.User;
+import org.joda.time.DateTime;
+import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by Sagar Gopale on 3/1/14.
@@ -25,8 +28,11 @@ public class Document extends Model {
 
     private String description;
 
-    @OneToMany
+    @ManyToOne
     private User user;
+
+    @Formats.DateTime(pattern = "MM/dd/yy")
+    public Timestamp created = new Timestamp(DateTime.now().toDate().getTime());
 
     public Document() {
     }
@@ -67,5 +73,13 @@ public class Document extends Model {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 }

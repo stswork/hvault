@@ -3,9 +3,12 @@ package models.history;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import models.conditions.Condition;
 import models.user.User;
+import org.joda.time.DateTime;
+import play.data.format.Formats;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +30,11 @@ public class FamilyHistory extends Model {
     @OneToOne
     private User relative;
 
-    @OneToMany
+    @ManyToOne
     private User user;
+
+    @Formats.DateTime(pattern = "MM/dd/yy")
+    public Timestamp created = new Timestamp(DateTime.now().toDate().getTime());
 
     public FamilyHistory() {
     }
@@ -69,5 +75,13 @@ public class FamilyHistory extends Model {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 }

@@ -5,20 +5,21 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-#Login Page
+# LOGIN
 GET     /login                      controllers.Application.login()
 
-#Dashboard Page
+# DASHBOARD
 GET     /dashboard                  controllers.Application.dashboard()
 
-#Profile Page
+# PROFILE
 GET     /profile                    controllers.Application.profile()
 
-#General Form
+# GENERAL
 GET     /form                       controllers.Application.form()
 
-#Registration
-GET     /register                   controllers.Application.register()
+# REGISTRATION
+GET     /registration                   controllers.RegistrationController.registration()
+POST    /registration                   controllers.RegistrationController.handleRegistration()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

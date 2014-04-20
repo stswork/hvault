@@ -19,6 +19,7 @@ import models.history.Procedure;
 import models.measurements.*;
 import models.medications.Medication;
 import models.relationship.Relationship;
+import org.joda.time.DateTime;
 import play.data.format.Formats;
 import play.db.ebean.Model;
 
@@ -30,9 +31,10 @@ import java.util.List;
 /**
  * Created by Sagar Gopale on 2/26/14.
  */
-@Entity
 @Table(name="o_user")
+@SequenceGenerator(name = "o_user_seq", sequenceName = "o_user_seq", initialValue = 1000)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class User extends Model {
 
     @Id
@@ -46,6 +48,8 @@ public class User extends Model {
 
     private String nickName;
 
+    private String password;
+
     private Relationship relationshipToPrimary;
 
     @Formats.DateTime(pattern = "MM/dd/yy")
@@ -53,20 +57,20 @@ public class User extends Model {
 
     private Gender gender;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Address> addressList = new ArrayList<Address>();
 
     private UserType userType;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Email> emailList = new ArrayList<Email>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Phone> phoneList = new ArrayList<Phone>();
 
     private String speciality;
 
-    private String placeOfBuisness;
+    private String placeOfBusiness;
 
     private Region regionOfOrigin;
 
@@ -78,76 +82,80 @@ public class User extends Model {
 
     private String language;
 
-    @OneToMany
+    /*@OneToMany(mappedBy = "user")
     private List<Allergy> allergyList = new ArrayList<Allergy>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Condition> conditionList = new ArrayList<Condition>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<MedicalDevice> medicalDeviceList = new ArrayList<MedicalDevice>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<CCD> ccdList = new ArrayList<CCD>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<CCR> ccrList = new ArrayList<CCR>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Document> documentList = new ArrayList<Document>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<DietaryIntake> dietaryIntakeList = new ArrayList<DietaryIntake>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Exercise> exerciseList = new ArrayList<Exercise>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Appointment> appointmentList = new ArrayList<Appointment>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<FamilyHistory> familyHistoryList = new ArrayList<FamilyHistory>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Immunization> immunizationList = new ArrayList<Immunization>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Procedure> procedureList = new ArrayList<Procedure>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<BloodGlucose> bloodGlucoseList = new ArrayList<BloodGlucose>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<BloodPressure> bloodPressureList = new ArrayList<BloodPressure>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Cholesterol> cholesterolList = new ArrayList<Cholesterol>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Height> heightList = new ArrayList<Height>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<PeakFlow> peakFlowList = new ArrayList<PeakFlow>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Weight> weightList = new ArrayList<Weight>();
 
-    @OneToMany
-    private List<Medication> medicationList = new ArrayList<Medication>();
+    @OneToMany(mappedBy = "user")
+    private List<Medication> medicationList = new ArrayList<Medication>();*/
+
+    @Formats.DateTime(pattern = "MM/dd/yy")
+    public Timestamp created = new Timestamp(DateTime.now().toDate().getTime());
 
     public User() {
     }
 
-    public User(String profileImageUrl, String fullName, String nickName, Relationship relationshipToPrimary, Timestamp dateOfBirth, Gender gender, UserType userType, String speciality, String placeOfBuisness, Region regionOfOrigin, Timestamp dateOfDeath, BloodType bloodType, String ethnicity, String language) {
+    public User(String profileImageUrl, String fullName, String nickName, String password, Relationship relationshipToPrimary, Timestamp dateOfBirth, Gender gender, UserType userType, String speciality, String placeOfBusiness, Region regionOfOrigin, Timestamp dateOfDeath, BloodType bloodType, String ethnicity, String language) {
         this.profileImageUrl = profileImageUrl;
         this.fullName = fullName;
         this.nickName = nickName;
+        this.password = password;
         this.relationshipToPrimary = relationshipToPrimary;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.userType = userType;
         this.speciality = speciality;
-        this.placeOfBuisness = placeOfBuisness;
+        this.placeOfBusiness = placeOfBusiness;
         this.regionOfOrigin = regionOfOrigin;
         this.dateOfDeath = dateOfDeath;
         this.bloodType = bloodType;
@@ -185,6 +193,14 @@ public class User extends Model {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Relationship getRelationshipToPrimary() {
@@ -251,12 +267,12 @@ public class User extends Model {
         this.speciality = speciality;
     }
 
-    public String getPlaceOfBuisness() {
-        return placeOfBuisness;
+    public String getPlaceOfBusiness() {
+        return placeOfBusiness;
     }
 
-    public void setPlaceOfBuisness(String placeOfBuisness) {
-        this.placeOfBuisness = placeOfBuisness;
+    public void setPlaceOfBusiness(String placeOfBusiness) {
+        this.placeOfBusiness = placeOfBusiness;
     }
 
     public Region getRegionOfOrigin() {
@@ -299,7 +315,7 @@ public class User extends Model {
         this.language = language;
     }
 
-    public List<Allergy> getAllergyList() {
+    /*public List<Allergy> getAllergyList() {
         return allergyList;
     }
 
@@ -449,5 +465,17 @@ public class User extends Model {
 
     public void setMedicationList(List<Medication> medicationList) {
         this.medicationList = medicationList;
+    }*/
+
+    public static Finder<Long, User> find = new Finder<Long, User>(
+            Long.class, User.class
+    );
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 }

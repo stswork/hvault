@@ -2,6 +2,8 @@ package models.history;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import models.user.User;
+import org.joda.time.DateTime;
+import play.data.format.Formats;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -36,8 +38,11 @@ public class Appointment extends Model {
 
     private String note;
 
-    @OneToMany
+    @ManyToOne
     private User user;
+
+    @Formats.DateTime(pattern = "MM/dd/yy")
+    public Timestamp created = new Timestamp(DateTime.now().toDate().getTime());
 
     public Appointment() {
     }
@@ -132,5 +137,13 @@ public class Appointment extends Model {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 }

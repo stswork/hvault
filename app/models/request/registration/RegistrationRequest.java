@@ -18,13 +18,15 @@ public class RegistrationRequest {
     public String city;
     public String country;
     public String pincode;
-    public Timestamp dateOfBirth;
+    public int dayOfBirth;
+    public int monthOfBirth;
+    public int yearOfBirth;
     public String gender;
 
     public RegistrationRequest() {
     }
 
-    public RegistrationRequest(String fullName, String nickName, String password, String phone, String email, String city, String country, String pincode, Timestamp dateOfBirth, String gender) {
+    public RegistrationRequest(String fullName, String nickName, String password, String phone, String email, String city, String country, String pincode, int dayOfBirth, int monthOfBirth, int yearOfBirth, String gender) {
         this.fullName = fullName;
         this.nickName = nickName;
         this.password = password;
@@ -33,7 +35,9 @@ public class RegistrationRequest {
         this.city = city;
         this.country = country;
         this.pincode = pincode;
-        this.dateOfBirth = dateOfBirth;
+        this.dayOfBirth = dayOfBirth;
+        this.monthOfBirth = monthOfBirth;
+        this.yearOfBirth = yearOfBirth;
         this.gender = gender;
     }
 
@@ -101,12 +105,28 @@ public class RegistrationRequest {
         this.pincode = pincode;
     }
 
-    public Timestamp getDateOfBirth() {
-        return dateOfBirth;
+    public int getDayOfBirth() {
+        return dayOfBirth;
     }
 
-    public void setDateOfBirth(Timestamp dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDayOfBirth(int dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
+    }
+
+    public int getMonthOfBirth() {
+        return monthOfBirth;
+    }
+
+    public void setMonthOfBirth(int monthOfBirth) {
+        this.monthOfBirth = monthOfBirth;
+    }
+
+    public int getYearOfBirth() {
+        return yearOfBirth;
+    }
+
+    public void setYearOfBirth(int yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
     }
 
     public String getGender() {
