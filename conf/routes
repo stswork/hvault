@@ -17,6 +17,9 @@ GET     /profile                    controllers.Application.profile()
 #General Form
 GET     /form                       controllers.Application.form()
 
+#Registration
+GET     /register                   controllers.Application.register()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 

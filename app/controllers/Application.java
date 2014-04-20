@@ -24,4 +24,10 @@ public class Application extends Controller {
     public static Result form() {
         return ok(form.render("Form"));
     }
+
+    public static Result register(){
+        return ok(registration.render("REGISTRATION"));
+    }
+
+
 }
