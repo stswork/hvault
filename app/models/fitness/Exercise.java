@@ -1,6 +1,7 @@
 package models.fitness;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import models.user.User;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -16,4 +17,7 @@ public class Exercise extends Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @ManyToOne
+    private User user;
 }

@@ -1,6 +1,7 @@
 package models.history;
 
 import models.user.User;
+import org.joda.time.DateTime;
 import play.data.format.Formats;
 import play.db.ebean.Model;
 
@@ -33,8 +34,11 @@ public class Immunization extends Model {
 
     private String manufacturer;
 
-    @OneToMany
+    @ManyToOne
     private User user;
+
+    @Formats.DateTime(pattern = "MM/dd/yy")
+    public Timestamp created = new Timestamp(DateTime.now().toDate().getTime());
 
     public Immunization() {
     }
@@ -120,5 +124,13 @@ public class Immunization extends Model {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 }
