@@ -42,11 +42,7 @@ public class User extends Model {
 
     private String profileImageUrl;
 
-    private String firstName;
-
-    private String middleName;
-
-    private String lastName;
+    private String fullName;
 
     private String nickName;
 
@@ -142,11 +138,9 @@ public class User extends Model {
     public User() {
     }
 
-    public User(String profileImageUrl, String firstName, String middleName, String lastName, String nickName, Relationship relationshipToPrimary, Timestamp dateOfBirth, Gender gender, UserType userType, String speciality, String placeOfBuisness, Region regionOfOrigin, Timestamp dateOfDeath, BloodType bloodType, String ethnicity, String language) {
+    public User(String profileImageUrl, String fullName, String nickName, Relationship relationshipToPrimary, Timestamp dateOfBirth, Gender gender, UserType userType, String speciality, String placeOfBuisness, Region regionOfOrigin, Timestamp dateOfDeath, BloodType bloodType, String ethnicity, String language) {
         this.profileImageUrl = profileImageUrl;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.nickName = nickName;
         this.relationshipToPrimary = relationshipToPrimary;
         this.dateOfBirth = dateOfBirth;
@@ -177,28 +171,12 @@ public class User extends Model {
         this.profileImageUrl = profileImageUrl;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getNickName() {
