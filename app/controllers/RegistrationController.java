@@ -31,6 +31,7 @@ public class RegistrationController extends Controller {
         return ok(registration.render("REGISTRATION"));
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
     @Transactional
     public static Result handleRegistration() {
         RegistrationRequest rr = null;
@@ -44,7 +45,7 @@ public class RegistrationController extends Controller {
             return badRequest(Json.toJson(new Message(400, "Invalid parameters passed!", Message.MessageType.BAD_REQUEST)));
         u = new User();
         u.setFullName(rr.getFullName());
-        u.setNickName(rr.getNickName());
+        u.setUserName(rr.getUserName());
         u.setPassword(rr.getPassword());
         u.setGender(Gender.valueOf(rr.getGender()));
         int _dd = rr.getDayOfBirth();
