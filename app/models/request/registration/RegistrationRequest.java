@@ -2,8 +2,6 @@ package models.request.registration;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.sql.Timestamp;
-
 /**
  * Created by Sagar Gopale on 4/20/14.
  */
@@ -11,7 +9,7 @@ import java.sql.Timestamp;
 public class RegistrationRequest {
 
     public String fullName;
-    public String nickName;
+    public String userName;
     public String password;
     public String phone;
     public String email;
@@ -26,9 +24,9 @@ public class RegistrationRequest {
     public RegistrationRequest() {
     }
 
-    public RegistrationRequest(String fullName, String nickName, String password, String phone, String email, String city, String country, String pincode, int dayOfBirth, int monthOfBirth, int yearOfBirth, String gender) {
+    public RegistrationRequest(String fullName, String userName, String password, String phone, String email, String city, String country, String pincode, int dayOfBirth, int monthOfBirth, int yearOfBirth, String gender) {
         this.fullName = fullName;
-        this.nickName = nickName;
+        this.userName = userName;
         this.password = password;
         this.phone = phone;
         this.email = email;
@@ -49,12 +47,12 @@ public class RegistrationRequest {
         this.fullName = fullName;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

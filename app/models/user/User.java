@@ -1,23 +1,9 @@
 package models.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import models.conditions.Allergy;
-import models.conditions.Condition;
-import models.conditions.MedicalDevice;
 import models.contact.Address;
 import models.contact.Email;
 import models.contact.Phone;
-import models.files.CCD;
-import models.files.CCR;
-import models.files.Document;
-import models.fitness.DietaryIntake;
-import models.fitness.Exercise;
-import models.history.Appointment;
-import models.history.FamilyHistory;
-import models.history.Immunization;
-import models.history.Procedure;
-import models.measurements.*;
-import models.medications.Medication;
 import models.relationship.Relationship;
 import org.joda.time.DateTime;
 import play.data.format.Formats;
@@ -46,7 +32,7 @@ public class User extends Model {
 
     private String fullName;
 
-    private String nickName;
+    private String userName;
 
     private String password;
 
@@ -145,10 +131,10 @@ public class User extends Model {
     public User() {
     }
 
-    public User(String profileImageUrl, String fullName, String nickName, String password, Relationship relationshipToPrimary, Timestamp dateOfBirth, Gender gender, UserType userType, String speciality, String placeOfBusiness, Region regionOfOrigin, Timestamp dateOfDeath, BloodType bloodType, String ethnicity, String language) {
+    public User(String profileImageUrl, String fullName, String userName, String password, Relationship relationshipToPrimary, Timestamp dateOfBirth, Gender gender, UserType userType, String speciality, String placeOfBusiness, Region regionOfOrigin, Timestamp dateOfDeath, BloodType bloodType, String ethnicity, String language) {
         this.profileImageUrl = profileImageUrl;
         this.fullName = fullName;
-        this.nickName = nickName;
+        this.userName = userName;
         this.password = password;
         this.relationshipToPrimary = relationshipToPrimary;
         this.dateOfBirth = dateOfBirth;
@@ -187,12 +173,12 @@ public class User extends Model {
         this.fullName = fullName;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

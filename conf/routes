@@ -5,9 +5,6 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-# LOGIN
-GET     /login                      controllers.Application.login()
-
 # DASHBOARD
 GET     /dashboard                  controllers.Application.dashboard()
 
@@ -16,6 +13,10 @@ GET     /profile                    controllers.Application.profile()
 
 # GENERAL
 GET     /form                       controllers.Application.form()
+
+# AUTHENTICATION
+GET     /login                      controllers.AuthenticationController.login()
+POST    /login                      controllers.AuthenticationController.handleLogin()
 
 # REGISTRATION
 GET     /registration                   controllers.RegistrationController.registration()
