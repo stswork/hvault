@@ -6,7 +6,7 @@
 GET     /                           controllers.Application.index()
 
 # PROFILE
-GET     /profile                    controllers.Application.profile()
+GET     /profile                    controllers.RegistrationController.getUser()
 
 # GENERAL
 GET     /form                       controllers.Application.form()
@@ -17,8 +17,8 @@ POST    /login                      controllers.authentication.AuthenticationCon
 GET     /logout                     controllers.authentication.AuthenticationController.logout()
 
 # REGISTRATION
-GET     /registration                   controllers.RegistrationController.registration()
-POST    /registration                   controllers.RegistrationController.handleRegistration()
+GET     /registration               controllers.RegistrationController.registration()
+POST    /registration               controllers.RegistrationController.handleRegistration()
 
 # DASHBOARD
 GET     /dashboard                  controllers.dashboard.DashboardController.dashboard()

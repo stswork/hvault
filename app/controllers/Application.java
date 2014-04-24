@@ -11,9 +11,9 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
-    public static Result profile() {
+   /* public static Result profile() {
         return ok(profile.render("Profile"));
-    }
+    }*/
 
     public static Result form() {
         return ok(form.render("Form"));

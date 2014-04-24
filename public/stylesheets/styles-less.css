@@ -4062,7 +4062,7 @@ body.register-page {
   background-size: cover;
 }
 body.register-page .register-page-container {
-  width: 380px;
+  width: 510px;
   position: relative;
   margin: 0 auto;
 }
@@ -4095,7 +4095,7 @@ body.register-page #submit {
   width: 100%;
   background-color: #1abc9c;
   border-color: #0e9b7f;
-  text-align: left;
+ /* text-align: left;*/
   background-image: url('../images/arrow-right.png');
   background-position: 310px center;
   background-repeat: no-repeat;
