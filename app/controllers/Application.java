@@ -15,9 +15,9 @@ public class Application extends Controller {
         return ok(dashboard.render("Dashboard"));
     }
 
-    public static Result profile() {
+   /* public static Result profile() {
         return ok(profile.render("Profile"));
-    }
+    }*/
 
     public static Result form() {
         return ok(form.render("Form"));

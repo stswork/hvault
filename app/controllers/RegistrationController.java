@@ -31,6 +31,13 @@ public class RegistrationController extends Controller {
         return ok(registration.render("REGISTRATION"));
     }
 
+    @Transactional
+    public static Result getUser(){
+        User u = (User) ctx().args.get("user");
+        return ok(views.html.profile.render("Profile",u));
+    }
+
+
     @BodyParser.Of(BodyParser.Json.class)
     @Transactional
     public static Result handleRegistration() {
