@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import models.user.User;
 import org.joda.time.DateTime;
 import play.data.format.Formats;
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -35,6 +36,9 @@ public class Address extends Model {
 
     private String pincode;
 
+    @Constraints.Required
+    private ContactType addressType;
+
     @ManyToOne
     private User user;
 
@@ -44,7 +48,7 @@ public class Address extends Model {
     public Address() {
     }
 
-    public Address(String streetAddress1, String streetAddress2, String streetAddress3, String city, String state, String country, String pincode, User user) {
+    public Address(String streetAddress1, String streetAddress2, String streetAddress3, String city, String state, String country, String pincode, User user, ContactType addressType) {
         this.streetAddress1 = streetAddress1;
         this.streetAddress2 = streetAddress2;
         this.streetAddress3 = streetAddress3;
@@ -53,6 +57,7 @@ public class Address extends Model {
         this.country = country;
         this.pincode = pincode;
         this.user = user;
+        this.addressType = addressType;
     }
 
     public Long getId() {
@@ -134,4 +139,16 @@ public class Address extends Model {
     public void setCreated(Timestamp created) {
         this.created = created;
     }
+
+    public ContactType getAddressType() {
+        return addressType;
+    }
+
+    public void setAddressType(ContactType addressType) {
+        this.addressType = addressType;
+    }
+
+    public static Finder<Long, Address> find = new Finder<Long, Address>(
+            Long.class, Address.class
+    );
 }

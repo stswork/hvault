@@ -12,8 +12,10 @@ create table address (
   state                     varchar(255),
   country                   varchar(255),
   pincode                   varchar(255),
+  address_type              integer,
   user_id                   bigint,
   created                   timestamp,
+  constraint ck_address_address_type check (address_type in (0,1)),
   constraint pk_address primary key (id))
 ;
 
@@ -163,6 +165,14 @@ create table family_history (
   user_id                   bigint,
   created                   timestamp,
   constraint pk_family_history primary key (id))
+;
+
+create table follow (
+  id                        bigint not null,
+  source_id                 bigint,
+  destination_id            bigint,
+  created                   timestamp,
+  constraint pk_follow primary key (id))
 ;
 
 create table height (
@@ -336,6 +346,8 @@ create sequence exercise_seq;
 
 create sequence family_history_seq;
 
+create sequence follow_seq;
+
 create sequence height_seq;
 
 create sequence lab_result_seq;
@@ -396,26 +408,30 @@ alter table family_history add constraint fk_family_history_relative_17 foreign 
 create index ix_family_history_relative_17 on family_history (relative_id);
 alter table family_history add constraint fk_family_history_user_18 foreign key (user_id) references o_user (id);
 create index ix_family_history_user_18 on family_history (user_id);
-alter table height add constraint fk_height_user_19 foreign key (user_id) references o_user (id);
-create index ix_height_user_19 on height (user_id);
-alter table medical_device add constraint fk_medical_device_manufacture_20 foreign key (manufacturer_id) references o_user (id);
-create index ix_medical_device_manufacture_20 on medical_device (manufacturer_id);
-alter table medical_device add constraint fk_medical_device_user_21 foreign key (user_id) references o_user (id);
-create index ix_medical_device_user_21 on medical_device (user_id);
-alter table medication add constraint fk_medication_user_22 foreign key (user_id) references o_user (id);
-create index ix_medication_user_22 on medication (user_id);
-alter table peak_flow add constraint fk_peak_flow_user_23 foreign key (user_id) references o_user (id);
-create index ix_peak_flow_user_23 on peak_flow (user_id);
-alter table phone add constraint fk_phone_user_24 foreign key (user_id) references o_user (id);
-create index ix_phone_user_24 on phone (user_id);
-alter table procedure add constraint fk_procedure_provider_25 foreign key (provider_id) references o_user (id);
-create index ix_procedure_provider_25 on procedure (provider_id);
-alter table procedure add constraint fk_procedure_secondaryProvide_26 foreign key (secondary_provider_id) references o_user (id);
-create index ix_procedure_secondaryProvide_26 on procedure (secondary_provider_id);
-alter table procedure add constraint fk_procedure_user_27 foreign key (user_id) references o_user (id);
-create index ix_procedure_user_27 on procedure (user_id);
-alter table weight add constraint fk_weight_user_28 foreign key (user_id) references o_user (id);
-create index ix_weight_user_28 on weight (user_id);
+alter table follow add constraint fk_follow_source_19 foreign key (source_id) references o_user (id);
+create index ix_follow_source_19 on follow (source_id);
+alter table follow add constraint fk_follow_destination_20 foreign key (destination_id) references o_user (id);
+create index ix_follow_destination_20 on follow (destination_id);
+alter table height add constraint fk_height_user_21 foreign key (user_id) references o_user (id);
+create index ix_height_user_21 on height (user_id);
+alter table medical_device add constraint fk_medical_device_manufacture_22 foreign key (manufacturer_id) references o_user (id);
+create index ix_medical_device_manufacture_22 on medical_device (manufacturer_id);
+alter table medical_device add constraint fk_medical_device_user_23 foreign key (user_id) references o_user (id);
+create index ix_medical_device_user_23 on medical_device (user_id);
+alter table medication add constraint fk_medication_user_24 foreign key (user_id) references o_user (id);
+create index ix_medication_user_24 on medication (user_id);
+alter table peak_flow add constraint fk_peak_flow_user_25 foreign key (user_id) references o_user (id);
+create index ix_peak_flow_user_25 on peak_flow (user_id);
+alter table phone add constraint fk_phone_user_26 foreign key (user_id) references o_user (id);
+create index ix_phone_user_26 on phone (user_id);
+alter table procedure add constraint fk_procedure_provider_27 foreign key (provider_id) references o_user (id);
+create index ix_procedure_provider_27 on procedure (provider_id);
+alter table procedure add constraint fk_procedure_secondaryProvide_28 foreign key (secondary_provider_id) references o_user (id);
+create index ix_procedure_secondaryProvide_28 on procedure (secondary_provider_id);
+alter table procedure add constraint fk_procedure_user_29 foreign key (user_id) references o_user (id);
+create index ix_procedure_user_29 on procedure (user_id);
+alter table weight add constraint fk_weight_user_30 foreign key (user_id) references o_user (id);
+create index ix_weight_user_30 on weight (user_id);
 
 
 
@@ -448,6 +464,8 @@ drop table if exists email cascade;
 drop table if exists exercise cascade;
 
 drop table if exists family_history cascade;
+
+drop table if exists follow cascade;
 
 drop table if exists height cascade;
 
@@ -500,6 +518,8 @@ drop sequence if exists email_seq;
 drop sequence if exists exercise_seq;
 
 drop sequence if exists family_history_seq;
+
+drop sequence if exists follow_seq;
 
 drop sequence if exists height_seq;
 

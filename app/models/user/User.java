@@ -18,7 +18,6 @@ import java.util.List;
  * Created by Sagar Gopale on 2/26/14.
  */
 @Table(name="o_user")
-@SequenceGenerator(name = "o_user_seq", sequenceName = "o_user_seq", initialValue = 1000)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class User extends Model {

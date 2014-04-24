@@ -1,6 +1,7 @@
 package models.response.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by Sagar Gopale on 4/24/14.
@@ -8,23 +9,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserResponse {
 
-    public String fullName;
+    public Long id = 0L;
+    public String fullName = StringUtils.EMPTY;
     public String primaryEmail;
     public String primaryPhone;
     public String dateOfBirth;
     public String gender;
     public String userType;
+    public String relationshipToPrimary = StringUtils.EMPTY;
 
     public UserResponse() {
     }
 
-    public UserResponse(String fullName, String primaryEmail, String primaryPhone, String dateOfBirth, String gender, String userType) {
+    public UserResponse(Long id, String fullName, String primaryEmail, String primaryPhone, String dateOfBirth, String gender, String userType, String relationshipToPrimary) {
+        this.id = id;
         this.fullName = fullName;
         this.primaryEmail = primaryEmail;
         this.primaryPhone = primaryPhone;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.userType = userType;
+        this.relationshipToPrimary = relationshipToPrimary;
     }
 
     public String getFullName() {
@@ -73,5 +78,21 @@ public class UserResponse {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getRelationshipToPrimary() {
+        return relationshipToPrimary;
+    }
+
+    public void setRelationshipToPrimary(String relationshipToPrimary) {
+        this.relationshipToPrimary = relationshipToPrimary;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

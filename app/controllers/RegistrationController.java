@@ -6,6 +6,7 @@ import com.avaje.ebean.Expr;
 import com.avaje.ebean.annotation.Transactional;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.contact.Address;
+import models.contact.ContactType;
 import models.contact.Email;
 import models.contact.Phone;
 import models.relationship.Relationship;
@@ -79,11 +80,11 @@ public class RegistrationController extends Controller {
         u.setUserType(UserType.USER);
         u.setRelationshipToPrimary(Relationship.SELF);
         u.save();
-        e = new Email(rr.getEmail(), StringUtils.EMPTY, Email.EmailType.PRIMARY, u);
+        e = new Email(rr.getEmail(), StringUtils.EMPTY, ContactType.PRIMARY, u);
         e.save();
-        p = new Phone(rr.getPhone(), StringUtils.EMPTY, Phone.PhoneType.PRIMARY, u);
+        p = new Phone(rr.getPhone(), StringUtils.EMPTY, ContactType.PRIMARY, u);
         p.save();
-        a = new Address(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY, rr.getCity(), StringUtils.EMPTY, rr.getCountry(), rr.getPincode(), u);
+        a = new Address(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY, rr.getCity(), StringUtils.EMPTY, rr.getCountry(), rr.getPincode(), u, ContactType.PRIMARY);
         a.save();
         return ok(Json.toJson(new Message(200, "Registration successful!", Message.MessageType.SUCCESSFUL)));
     }

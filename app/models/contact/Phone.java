@@ -29,7 +29,7 @@ public class Phone extends Model {
     private String description;
 
     @Constraints.Required
-    private PhoneType phoneType;
+    private ContactType phoneType;
 
     @ManyToOne
     private User user;
@@ -40,7 +40,7 @@ public class Phone extends Model {
     public Phone() {
     }
 
-    public Phone(String name, String description, PhoneType phoneType, User user) {
+    public Phone(String name, String description, ContactType phoneType, User user) {
         this.name = name;
         this.description = description;
         this.phoneType = phoneType;
@@ -91,11 +91,11 @@ public class Phone extends Model {
             Long.class, Phone.class
     );
 
-    public PhoneType getPhoneType() {
+    public ContactType getPhoneType() {
         return phoneType;
     }
 
-    public void setPhoneType(PhoneType phoneType) {
+    public void setPhoneType(ContactType phoneType) {
         this.phoneType = phoneType;
     }
 

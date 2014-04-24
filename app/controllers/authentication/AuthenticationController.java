@@ -5,6 +5,7 @@ import com.avaje.ebean.Expr;
 import com.avaje.ebean.annotation.Transactional;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import models.contact.ContactType;
 import models.contact.Email;
 import models.contact.Phone;
 import models.request.authentication.LoginRequest;
@@ -45,17 +46,20 @@ public class AuthenticationController extends Controller {
         if(lr == null)
             return badRequest(Json.toJson(new Message(400, "Invalid parameters passed!", Message.MessageType.BAD_REQUEST)));
         em = Ebean.find(Email.class).fetch("user").where(
-                Expr.eq("name", lr.getUserName())
+                Expr.and(
+                        Expr.eq("name", lr.getUserName()),
+                        Expr.eq("emailType", ContactType.PRIMARY)
+                )
         ).setMaxRows(1).findUnique();
         if(em == null || em.getUser() == null || !em.getUser().getPassword().equalsIgnoreCase(lr.getPassword()))
             return notFound(Json.toJson(new Message(404, "No such user found!", Message.MessageType.NOT_FOUND)));
         p = Ebean.find(Phone.class).fetch("user").where(
                 Expr.and(
                         Expr.eq("user.id", em.getUser().getId()),
-                        Expr.eq("phoneType", Phone.PhoneType.PRIMARY)
+                        Expr.eq("phoneType", ContactType.PRIMARY)
                 )
         ).setMaxRows(1).findUnique();
-        ur = new UserResponse(em.getUser().getFullName(), em.getName(), p == null ? StringUtils.EMPTY : p.getName(), DATE_TIME_FORMATTER.print(em.getUser().getDateOfBirth().getTime()), em.getUser().getGender().name(), em.getUser().getUserType().name());
+        ur = new UserResponse(em.getUser().getId(), em.getUser().getFullName(), em.getName(), p == null ? StringUtils.EMPTY : p.getName(), DATE_TIME_FORMATTER.print(em.getUser().getDateOfBirth().getTime()), em.getUser().getGender().name(), em.getUser().getUserType().name(), em.getUser().getRelationshipToPrimary().name());
         try {
             session("ur", StringUtils.toString(org.apache.commons.codec.binary.Base64.encodeBase64(mapper.writeValueAsString(ur).getBytes()), "UTF-8"));
         } catch (Exception e) {

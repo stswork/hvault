@@ -1,4 +1,4 @@
-@(title: String, ur: models.response.user.UserResponse)
+@(title: String, p: models.response.user.Profile)
 
 @import tags.header._
 @import tags.footer._
@@ -55,12 +55,12 @@
 
                     <h3>Shubho Pramanik</h3>
                     <ul class="icon-list">
-                        <li><i class="fa fa-envelope"></i> shubho.pramanik@@gmail.com</li>
+                        <li><i class="fa fa-envelope"></i> @p.getUserResponse().getPrimaryEmail()</li>
                        <!-- <li><i class="fa fa-building-o"></i></li>-->
-                        <li><i class="fa fa-map-marker"></i> Thane 400601, Maharastra, India</li>
-                        <li><i class="fa fa-suitcase"></i> Self</li>
-                        <li><i class="fa fa-user"></i> MALE</li>
-                        <li><i class="fa fa-phone"></i> <a href="#">02225470456</a></li>
+                        <li><i class="fa fa-map-marker"></i> @p.getAddress()</li>
+                        <li><i class="fa fa-suitcase"></i> @p.getUserResponse().getRelationshipToPrimary()</li>
+                        <li><i class="fa fa-user"></i> @p.getUserResponse().getGender()</li>
+                        <li><i class="fa fa-phone"></i> <a href="#"> @p.getUserResponse().getPrimaryPhone()</a></li>
                     </ul>
 
                 </div>
@@ -71,11 +71,11 @@
             <div class="row">
                 <ul class="profile-stats">
                     <li class="followers col-md-3 col-lg-3 col-sm-3 col-xs-6">
-                        <p>1,315</p>
+                        <p>@p.getFollowerCount()</p>
                         <h3>Followers</h3>
                     </li>
                     <li class="following col-md-3 col-lg-3 col-sm-3 col-xs-6">
-                        <p>218</p>
+                        <p>@p.getFollowingCount()</p>
                         <h3>Following</h3>
                     </li>
                     <li class="projects col-md-3 col-lg-3 col-sm-3 col-xs-6">
