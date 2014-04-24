@@ -45,7 +45,7 @@ public class RegistrationController extends Controller {
             return badRequest(Json.toJson(new Message(400, "Invalid parameters passed!", Message.MessageType.BAD_REQUEST)));
         u = new User();
         u.setFullName(rr.getFullName());
-        u.setUserName(rr.getUserName());
+        u.setEmail(rr.getEmail());
         u.setPassword(rr.getPassword());
         u.setGender(Gender.valueOf(rr.getGender()));
         int _dd = rr.getDayOfBirth();

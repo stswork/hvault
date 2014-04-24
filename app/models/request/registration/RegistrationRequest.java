@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class RegistrationRequest {
 
     public String fullName;
-    public String userName;
     public String password;
     public String phone;
     public String email;
@@ -24,9 +23,8 @@ public class RegistrationRequest {
     public RegistrationRequest() {
     }
 
-    public RegistrationRequest(String fullName, String userName, String password, String phone, String email, String city, String country, String pincode, int dayOfBirth, int monthOfBirth, int yearOfBirth, String gender) {
+    public RegistrationRequest(String fullName, String password, String phone, String email, String city, String country, String pincode, int dayOfBirth, int monthOfBirth, int yearOfBirth, String gender) {
         this.fullName = fullName;
-        this.userName = userName;
         this.password = password;
         this.phone = phone;
         this.email = email;
@@ -45,14 +43,6 @@ public class RegistrationRequest {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {
