@@ -23,7 +23,7 @@ $(document).ready(function() {
 	$("form").on("submit", function(e) {
         e.preventDefault();
         var _data = $(e.currentTarget).serializeObject();
-        alert("INSIDE");
+        /*alert("INSIDE");*/
         $.ajax({
              type: e.currentTarget.method,
              url: e.currentTarget.action,

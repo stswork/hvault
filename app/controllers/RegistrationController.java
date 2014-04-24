@@ -36,7 +36,7 @@ public class RegistrationController extends Controller {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy");
     private static final String URL_SEPARATOR = "/";
 
-    @With(Authenticated.class)
+
     public static Result registration(){
         if(!StringUtils.isEmpty(session().get("ur")))
             return redirect(controllers.dashboard.routes.DashboardController.dashboard());
@@ -44,7 +44,6 @@ public class RegistrationController extends Controller {
     }
 
     @BodyParser.Of(BodyParser.Json.class)
-    @With(Authenticated.class)
     @Transactional
     public static Result handleRegistration() {
         RegistrationRequest rr = null;
