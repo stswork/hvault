@@ -26,7 +26,10 @@ public class Email extends Model {
     private String name;
 
     @Constraints.Required
-    private String email;
+    private String description;
+
+    @Constraints.Required
+    private EmailType emailType;
 
     @ManyToOne
     private User user;
@@ -34,9 +37,10 @@ public class Email extends Model {
     @Formats.DateTime(pattern = "MM/dd/yy")
     public Timestamp created = new Timestamp(DateTime.now().toDate().getTime());
 
-    public Email(String name, String email, User user) {
+    public Email(String name, String description, EmailType emailType, User user) {
         this.name = name;
-        this.email = email;
+        this.description = description;
+        this.emailType = emailType;
         this.user = user;
     }
 
@@ -57,11 +61,11 @@ public class Email extends Model {
     }
 
     public String getEmail() {
-        return email;
+        return description;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String description) {
+        this.description = description;
     }
 
     public User getUser() {
@@ -78,5 +82,18 @@ public class Email extends Model {
 
     public void setCreated(Timestamp created) {
         this.created = created;
+    }
+
+    public EmailType getEmailType() {return emailType;}
+
+    public void setEmailType(EmailType emailType) {this.emailType = emailType;}
+
+    public static Finder<Long, Email> find = new Finder<Long, Email>(
+            Long.class, Email.class
+    );
+
+    public enum EmailType {
+        PRIMARY,
+        SECONDARY
     }
 }
