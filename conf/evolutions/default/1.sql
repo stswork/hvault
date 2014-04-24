@@ -276,7 +276,7 @@ create table o_user (
   id                        bigint not null,
   profile_image_url         varchar(255),
   full_name                 varchar(255),
-  nick_name                 varchar(255),
+  user_name                 varchar(255),
   password                  varchar(255),
   relationship_to_primary   integer,
   date_of_birth             timestamp,
