@@ -32,8 +32,6 @@ public class User extends Model {
 
     private String fullName;
 
-    private String email;
-
     private String password;
 
     private Relationship relationshipToPrimary;
@@ -131,10 +129,9 @@ public class User extends Model {
     public User() {
     }
 
-    public User(String profileImageUrl, String fullName, String email, String password, Relationship relationshipToPrimary, Timestamp dateOfBirth, Gender gender, UserType userType, String speciality, String placeOfBusiness, Region regionOfOrigin, Timestamp dateOfDeath, BloodType bloodType, String ethnicity, String language) {
+    public User(String profileImageUrl, String fullName, String password, Relationship relationshipToPrimary, Timestamp dateOfBirth, Gender gender, UserType userType, String speciality, String placeOfBusiness, Region regionOfOrigin, Timestamp dateOfDeath, BloodType bloodType, String ethnicity, String language) {
         this.profileImageUrl = profileImageUrl;
         this.fullName = fullName;
-        this.email = email;
         this.password = password;
         this.relationshipToPrimary = relationshipToPrimary;
         this.dateOfBirth = dateOfBirth;
@@ -171,14 +168,6 @@ public class User extends Model {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {

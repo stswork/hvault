@@ -28,6 +28,9 @@ public class Phone extends Model {
     @Constraints.Required
     private String description;
 
+    @Constraints.Required
+    private PhoneType phoneType;
+
     @ManyToOne
     private User user;
 
@@ -37,9 +40,10 @@ public class Phone extends Model {
     public Phone() {
     }
 
-    public Phone(String name, String description, User user) {
+    public Phone(String name, String description, PhoneType phoneType, User user) {
         this.name = name;
         this.description = description;
+        this.phoneType = phoneType;
         this.user = user;
     }
 
@@ -81,5 +85,22 @@ public class Phone extends Model {
 
     public void setCreated(Timestamp created) {
         this.created = created;
+    }
+
+    public static Finder<Long, Phone> find = new Finder<Long, Phone>(
+            Long.class, Phone.class
+    );
+
+    public PhoneType getPhoneType() {
+        return phoneType;
+    }
+
+    public void setPhoneType(PhoneType phoneType) {
+        this.phoneType = phoneType;
+    }
+
+    public enum PhoneType {
+        PRIMARY,
+        SECONDARY
     }
 }
