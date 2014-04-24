@@ -18,7 +18,6 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.login;
 
 /**
  * Created by Sagar Gopale on 4/20/14.
@@ -28,7 +27,7 @@ public class AuthenticationController extends Controller {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy");
 
     public static Result login() {
-        return ok(login.render("Login"));
+        return ok(views.html.authentication.login.render("Login"));
     }
 
     @BodyParser.Of(BodyParser.Json.class)
@@ -68,6 +67,6 @@ public class AuthenticationController extends Controller {
 
     public static Result logout() {
         session().clear();
-        return ok(login.render("Login"));
+        return ok(views.html.authentication.login.render("Login"));
     }
 }

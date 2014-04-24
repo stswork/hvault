@@ -2,11 +2,11 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
 # Home page
 GET     /                           controllers.Application.index()
-
-# PROFILE
-GET     /profile                    controllers.RegistrationController.getUser()
 
 # GENERAL
 GET     /form                       controllers.Application.form()
@@ -23,7 +23,8 @@ POST    /registration               controllers.RegistrationController.handleReg
 # DASHBOARD
 GET     /dashboard                  controllers.dashboard.DashboardController.dashboard()
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+# USER
+GET     /profile                    controllers.user.UserController.profile()
+
 
 

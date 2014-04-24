@@ -11,6 +11,7 @@ import models.contact.Phone;
 import models.relationship.Relationship;
 import models.request.registration.RegistrationRequest;
 import models.response.Message;
+import models.response.user.UserResponse;
 import models.user.Gender;
 import models.user.User;
 import models.user.UserType;
@@ -36,15 +37,10 @@ public class RegistrationController extends Controller {
 
     @With(Authenticated.class)
     public static Result registration(){
+        if(!StringUtils.isEmpty(session().get("ur")))
+            return redirect(controllers.dashboard.routes.DashboardController.dashboard());
         return ok(registration.render("REGISTRATION"));
     }
-
-    @Transactional
-    public static Result getUser(){
-        User u = (User) ctx().args.get("user");
-        return ok(views.html.profile.render("Profile", u));
-    }
-
 
     @BodyParser.Of(BodyParser.Json.class)
     @With(Authenticated.class)
