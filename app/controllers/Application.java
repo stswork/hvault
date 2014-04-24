@@ -11,10 +11,6 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
-    public static Result dashboard() {
-        return ok(dashboard.render("Dashboard"));
-    }
-
     public static Result profile() {
         return ok(profile.render("Profile"));
     }

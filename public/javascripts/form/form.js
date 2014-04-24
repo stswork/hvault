@@ -23,6 +23,7 @@ $(document).ready(function() {
 	$("form").on("submit", function(e) {
         e.preventDefault();
         var _data = $(e.currentTarget).serializeObject();
+        alert("INSIDE");
         $.ajax({
              type: e.currentTarget.method,
              url: e.currentTarget.action,
@@ -32,14 +33,14 @@ $(document).ready(function() {
                     if(data.status == 200) {
                         window.location = $(e.currentTarget).data().uri;
                     } else {
-                        $(e.currentTarget).find("div.error p").html(data.message);
+                        $(e.currentTarget).find("div.error p").html(data.comment);
                         $(e.currentTarget).find("div.error").show();
                     }
                 }
              },
              error: function(xhr, textStatus, errorThrown) {
                     var em = jQuery.parseJSON(xhr.responseText)
-                    $(e.currentTarget).find("div.error p").html(em.message);
+                    $(e.currentTarget).find("div.error p").html(em.comment);
                     $(e.currentTarget).find("div.error").show();
              },
              dataType: "json",
