@@ -14,6 +14,7 @@ GET     /form                       controllers.Application.form()
 # AUTHENTICATION
 GET     /login                      controllers.authentication.AuthenticationController.login()
 POST    /login                      controllers.authentication.AuthenticationController.handleLogin()
+GET     /logout                     controllers.authentication.AuthenticationController.logout()
 
 # REGISTRATION
 GET     /registration                   controllers.RegistrationController.registration()

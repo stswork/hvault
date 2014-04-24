@@ -1,5 +1,6 @@
 package controllers;
 
+import actions.Authenticated;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Expr;
 import com.avaje.ebean.annotation.Transactional;
@@ -21,6 +22,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.With;
 import views.html.registration;
 
 import java.sql.Timestamp;
@@ -32,11 +34,13 @@ public class RegistrationController extends Controller {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy");
     private static final String URL_SEPARATOR = "/";
 
+    @With(Authenticated.class)
     public static Result registration(){
         return ok(registration.render("REGISTRATION"));
     }
 
     @BodyParser.Of(BodyParser.Json.class)
+    @With(Authenticated.class)
     @Transactional
     public static Result handleRegistration() {
         RegistrationRequest rr = null;

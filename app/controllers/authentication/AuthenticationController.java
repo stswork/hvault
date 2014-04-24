@@ -67,7 +67,7 @@ public class AuthenticationController extends Controller {
     }
 
     public static Result logout() {
-
+        session().clear();
         return ok(login.render("Login"));
     }
 }

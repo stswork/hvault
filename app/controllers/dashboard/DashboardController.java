@@ -1,7 +1,9 @@
 package controllers.dashboard;
 
+import actions.Authenticated;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.With;
 import views.html.dashboard;
 
 /**
@@ -9,6 +11,7 @@ import views.html.dashboard;
  */
 public class DashboardController extends Controller {
 
+    @With(Authenticated.class)
     public static Result dashboard() {
         return ok(dashboard.render("Dashboard"));
     }
