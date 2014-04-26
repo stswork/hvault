@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import models.contact.Address;
 import models.contact.Email;
 import models.contact.Phone;
+import models.measurements.Weight;
 import models.relationship.Relationship;
 import org.joda.time.DateTime;
 import play.data.format.Formats;
@@ -114,12 +115,12 @@ public class User extends Model {
     private List<Height> heightList = new ArrayList<Height>();
 
     @OneToMany(mappedBy = "user")
-    private List<PeakFlow> peakFlowList = new ArrayList<PeakFlow>();
+    private List<PeakFlow> peakFlowList = new ArrayList<PeakFlow>();*/
 
     @OneToMany(mappedBy = "user")
     private List<Weight> weightList = new ArrayList<Weight>();
 
-    @OneToMany(mappedBy = "user")
+    /*@OneToMany(mappedBy = "user")
     private List<Medication> medicationList = new ArrayList<Medication>();*/
 
     @Formats.DateTime(pattern = "MM/dd/yy")
@@ -423,7 +424,7 @@ public class User extends Model {
 
     public void setPeakFlowList(List<PeakFlow> peakFlowList) {
         this.peakFlowList = peakFlowList;
-    }
+    }*/
 
     public List<Weight> getWeightList() {
         return weightList;
@@ -433,7 +434,7 @@ public class User extends Model {
         this.weightList = weightList;
     }
 
-    public List<Medication> getMedicationList() {
+    /*public List<Medication> getMedicationList() {
         return medicationList;
     }
 

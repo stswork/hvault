@@ -1,26 +1,17 @@
-(function($)
-{
-
+(function($){
   if (typeof charts == 'undefined')
     return;
-
   /* Revenue Chart */
-  charts.revenue_chart =
-  {
+  charts.revenue_chart = {
     // data
-    data:
-    {
+    data:{
       d1: []
     },
-
     // will hold the chart object
     plot: null,
-
     // chart options
-    options:
-    {
-      grid:
-      {
+    options: {
+      grid: {
         autoHighlight: false,
         backgroundColor: null,
         color: '#7d6ccb',
@@ -67,19 +58,13 @@
         defaultTheme: false
       }
     },
-
     placeholder: "#revenue-chart",
-
     // initialize
-    init: function()
-    {
-      this.options.colors = ["#ffffff"];
-      this.options.grid.backgroundColor = null;
-
+    init: function(){
+        this.options.colors = ["#ffffff"];
+        this.options.grid.backgroundColor = null;
       var that = this;
-
-      if (this.plot == null)
-      {
+      if (this.plot == null){
         this.data.d1 = [ [6, 1300], [7, 1600], [8, 1900], [9, 2100], [10, 2500], [11, 2200], [12, 2000], [13, 1950], [14, 1900], [15, 2000], [16, 1900], [17, 2300]];
       }
       this.plot = $.plot(
@@ -93,22 +78,16 @@
     }
   };
 
-  charts.week_sales =
-  {
+  charts.week_sales ={
     // data
-    data:
-    {
+    data:{
       d1: []
     },
-
     // will hold the chart object
     plot: null,
-
     // chart options
-    options:
-    {
-      grid:
-      {
+    options: {
+      grid: {
         autoHighlight: false,
         backgroundColor: null,
         color: '#7d6ccb',
@@ -155,22 +134,39 @@
         defaultTheme: false
       }
     },
-
-    placeholder: "#week-sales",
-
+    placeholder: "#weight-graph",
     // initialize
-    init: function()
-    {
-      this.options.colors = ["#ffffff"];
-      this.options.grid.backgroundColor = null;
+    init: function(){
+        var _url = $(this.placeholder).data().uri;
+        console.log(_url);
+        var response;
+        var thisForAjax = this;
+        this.options.colors = ["#ffffff"];
+        this.options.grid.backgroundColor = null;
+        var that = this;
+        $.ajax({
+            type: "GET",
+            url: _url,
+            async: false,
+            success: function(data,status,xhr) {
+                if(xhr && xhr.status) {
+                    if(xhr.status == 200) {
+                        $.each(JSON.parse(xhr.responseText), function( index, value ){
+                            var arr = [value.created, value.pounds + "." + value.ounces];
+                            console.log(arr);
+                            thisForAjax.data.d1.push(arr);
+                            console.log(thisForAjax.data.d1);
+                        });
+                    }
+                }
+            },
+            dataType: "json"
+        });
 
-      var that = this;
-
-      if (this.plot == null)
-      {
+        /*if (this.plot == null){
         this.data.d1 = [ ['Sun', 1300], ['Mon', 1600], ['Tue', 1900], ['Wed', 2100], ['Thu', 2500], ['Fri', 2200], ['Sat', 2000] ];
-      }
-      this.plot = $.plot(
+        }*/
+        this.plot = $.plot(
         $(this.placeholder),
         [{
           label: "Data 1",
@@ -178,7 +174,7 @@
           lines: { fill: 0.00 },
           points: { fillColor: "#5ac8d2" }
         }], this.options);
-    }
+        }
   };
 
   // ShowTooltips
@@ -193,7 +189,7 @@
   }
 
   // Tooltips
-  $('#week-sales, #revenue-chart').bind("plothover", function (event, pos, item) {
+  $('#weight-graph, #revenue-chart').bind("plothover", function (event, pos, item) {
     $("#x").text(pos.x.toFixed(2));
     $("#y").text(pos.y.toFixed(2));
 
@@ -218,7 +214,7 @@
   if ($('#revenue-chart').length) {
     charts.revenue_chart.init();
   }
-  if ($('#week-sales').length) {
+  if ($('#weight-graph').length) {
     charts.week_sales.init();
   }
 

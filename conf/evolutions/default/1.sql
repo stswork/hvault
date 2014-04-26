@@ -313,6 +313,9 @@ create table o_user (
 
 create table weight (
   id                        bigint not null,
+  pounds                    integer,
+  ounce                     integer,
+  note                      varchar(255),
   user_id                   bigint,
   created                   timestamp,
   constraint pk_weight primary key (id))

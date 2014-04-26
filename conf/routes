@@ -22,6 +22,7 @@ POST    /registration               controllers.RegistrationController.handleReg
 
 # DASHBOARD
 GET     /dashboard                  controllers.dashboard.DashboardController.dashboard()
+GET     /dashboard/weights          controllers.dashboard.DashboardController.getWeights()
 
 # USER
 GET     /profile                    controllers.user.UserController.profile()
