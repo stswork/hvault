@@ -39,7 +39,7 @@ $(document).ready(function() {
                 }
              },
              error: function(xhr, textStatus, errorThrown) {
-                    var em = jQuery.parseJSON(xhr.responseText)
+                    var em = jQuery.parseJSON(xhr.responseText);
                     $(e.currentTarget).find("div.error p").html(em.comment);
                     $(e.currentTarget).find("div.error").show();
              },
