@@ -1,1 +1,1 @@
-web: target/start -Dhttp.port=$PORT $JAVA_OPTS -Dconfig.resource=app.dev.conf
+web: target/universal/stage/bin/archomed -Dhttp.port=$PORT -Dconfig.resource=app.dev.conf
