@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import play.Logger;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
@@ -56,9 +57,12 @@ public class RegistrationController extends Controller {
             rr = Json.fromJson(body, RegistrationRequest.class);
         if(rr == null)
             return badRequest(Json.toJson(new Message(400, "Invalid parameters passed!", Message.MessageType.BAD_REQUEST)));
+        Logger.info("REGISTRATION REQUEST : " + Json.toJson(rr));
+        //CHECKING IF EMAIL EXISTING OR NOT
         e = Ebean.find(Email.class).where(
                 Expr.eq("name", rr.getEmail())
         ).setMaxRows(1).findUnique();
+        //CHECKING IF PHONE EXISTING OR NOT
         p = Ebean.find(Phone.class).where(
                 Expr.eq("name", rr.getPhone())
         ).setMaxRows(1).findUnique();
