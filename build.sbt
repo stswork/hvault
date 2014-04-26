@@ -12,3 +12,6 @@ libraryDependencies ++= Seq(
 )
 
 play.Project.playJavaSettings
+
+resolvers += "Sonatype OSS Snapshots Repository" at "http://oss.sonatype.org/content/groups/public"
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
